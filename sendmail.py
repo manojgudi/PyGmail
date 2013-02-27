@@ -14,8 +14,8 @@ gmail_pwd = '' # Will  be fetched from user runtime
 
 def getMultilineInput(): #For mail body.
    body = [] 
-   entry = raw_input("\nEnter body, 'done' on its own line to quit: \n") 
-   while entry != "done": 
+   entry = raw_input("\nEnter body, '##done' on its own line to quit: \n") 
+   while entry != "##done": 
        body.append(entry) 
        entry = raw_input("") 
    body = '\n'.join(body)
