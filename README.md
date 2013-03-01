@@ -11,4 +11,6 @@ Usage:
 
 Try `./sendmail -h`  for more options
 
+Check ./examples/report_kernel_compile
+
 PS: Yes, maybe its not secure, but when you are AFK from your laptop; everything is **unsecured**
