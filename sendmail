@@ -65,7 +65,6 @@ def mail(to, subject, text, attach):
 	print '\nFrom:',gmail_user
 
 
-
 # For gmail_user and password from file credentials
 if args.c != None:
 	credentials = content_from_file(args.c).splitlines()
@@ -75,7 +74,7 @@ if args.c != None:
 else:
 	print "requires email details"
 	exit()
-	
+
 # Body file
 if args.b != None:
 	body = content_from_file(args.b)
@@ -83,13 +82,25 @@ if args.b != None:
 else:
 	print "requires text file path (email_body)"
 	exit()
+
+
+#Multiple Flag
+multiple=False
 	
 # For getting To email id
 if args.t != None:
 	to = args.t
+	
+	# multiple arguments
+	if args.t.count(",") != 0:
+		# set multiple flag
+		multiple=True
+		email_list=args.t.split(",")
+			
 else:
 	print("requires valid TO address")
 	exit()
+	
 	
 # For getting subject line
 if args.s != None:
@@ -98,9 +109,13 @@ else:
 	print("requires valid subject line")
 	exit()
 	
-
 # MAIL To function
-mail(to,  subject,  body, "")
+if multiple == 0:
+	mail(to,  subject,  body, "")
+else:
+	for i in email_list:
+		mail(i, subject, body, "")
+		
 
 # To do:
 # Multiple send addresses
