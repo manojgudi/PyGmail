@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Horizontal level
+# conf_files/  linux-sunxi/ uImages/ [linux-sunxi/report_kernel_config] for_each_conf
+#
+
+# To be put in horizontal with linux-sunxi folder 
+for i in `ls conf_files/`
+do
+
+	cd linux-sunxi/
+	cp ../conf_files/$i .config
+	./report_kernel_config
+
+	# copy it into a horizontal folder uImages
+	cp arch/arm/boot/uImage ../uImages/"uImage$i"
+	make clean
+	cd ..
+
+done
