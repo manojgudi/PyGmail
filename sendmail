@@ -78,14 +78,14 @@ else:
 # Body file
 if args.b != None:
 	body = content_from_file(args.b)
-	print body
+	print "BODY ",body
 else:
 	print "requires text file path (email_body)"
 	exit()
 
 
-#Multiple Flag
-multiple=False
+#Single emailId Flag
+single=True
 	
 # For getting To email id
 if args.t != None:
@@ -94,9 +94,9 @@ if args.t != None:
 	# multiple arguments
 	if args.t.count(",") != 0:
 		# set multiple flag
-		multiple=True
+		single=False
 		email_list=args.t.split(",")
-			
+		print "Send it to email_list", email_list
 else:
 	print("requires valid TO address")
 	exit()
@@ -110,10 +110,11 @@ else:
 	exit()
 	
 # MAIL To function
-if multiple == 0:
+if  single:
 	mail(to,  subject,  body, "")
 else:
 	for i in email_list:
+		print "Mailing to %s" %i 
 		mail(i, subject, body, "")
 		
 
